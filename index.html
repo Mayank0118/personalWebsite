@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayank Gupta | Resume</title>
+    <title>Mayank Gupta | Portfolio</title>
     <style>
+        /* Modern CSS Variables for easy color/theme management */
         :root {
-            --primary: #1e293b;
-            --secondary: #0f766e;
-            --text-main: #334155;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --border: #e2e8f0;
+            --bg-main: #0b0f19;
+            --bg-card: #131a26;
+            --bg-tag: #1e293b;
+            --accent: #0ea5e9;
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #2dd4bf 100%);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: #1e293b;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
         }
 
         * {
@@ -21,177 +26,267 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            background-color: #f1f5f9;
+            font-family: var(--font-stack);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.7;
             padding: 40px 20px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 940px;
             margin: 0 auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
 
-        /* Header Styles */
+        /* Hero Header Section */
         header {
-            text-align: center;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 24px;
-            margin-bottom: 30px;
+            background: var(--bg-card);
+            padding: 50px 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
         }
 
         header h1 {
-            color: var(--primary);
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 15px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
+            margin-top: 20px;
             font-size: 0.95rem;
-            color: var(--text-light);
+            color: var(--text-secondary);
         }
 
-        .contact-info a {
-            color: var(--secondary);
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item a {
+            color: var(--text-primary);
             text-decoration: none;
+            transition: color 0.2s ease;
+            font-weight: 500;
         }
 
-        .contact-info a:hover {
-            text-decoration: underline;
+        .contact-item a:hover {
+            color: var(--accent);
         }
 
-        /* Section Layouts */
+        /* Layout Grid for Sections */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
         section {
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            border-left: 4px solid var(--secondary);
-            padding-left: 12px;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            background: var(--bg-light);
-            padding: 20px;
-            border-radius: 6px;
+        h2::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border-color);
         }
 
-        .skills-category strong {
-            color: var(--primary);
-            display: block;
-            margin-bottom: 5px;
+        /* Cards and Items */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        /* Timeline Items (Experience, Education, Projects) */
-        .item {
-            margin-bottom: 25px;
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #334155;
         }
 
-        .item:last-child {
-            margin-bottom: 0;
-        }
-
-        .item-header {
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             flex-wrap: wrap;
-            margin-bottom: 8px;
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
-        .item-title h3 {
-            color: var(--primary);
-            font-size: 1.15rem;
-        }
-
-        .item-title .subtitle {
-            color: var(--secondary);
+        .job-title {
+            font-size: 1.2rem;
             font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .company {
             font-size: 1rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-top: 2px;
         }
 
-        .item-details {
+        .meta-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
             text-align: right;
-            font-size: 0.9rem;
-            color: var(--text-light);
         }
 
-        .item-details .date {
+        .meta-text .date {
+            color: var(--text-secondary);
             font-weight: 600;
-            color: var(--primary);
+            margin-bottom: 2px;
         }
 
+        /* Custom Styled Lists */
         ul {
-            list-style-type: square;
-            padding-left: 20px;
-            color: var(--text-main);
+            list-style: none;
         }
 
         li {
-            margin-bottom: 6px;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
             font-size: 0.95rem;
+            color: var(--text-secondary);
         }
 
-        /* Certifications Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid var(--border);
+        /* Pill Tags (Skills & Certs) */
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
         }
 
-        th {
-            background-color: var(--bg-light);
-            color: var(--primary);
+        .tag {
+            background: var(--bg-tag);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
             font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
         }
 
-        tr:hover {
-            background-color: #fafafa;
+        .edu-item {
+            margin-bottom: 20px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 600px) {
+        .edu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .edu-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cert-item {
+            font-size: 0.9rem;
+            border-left: 2px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .cert-name {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .cert-org {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
             body {
-                padding: 10px;
+                padding: 20px 10px;
             }
-            .container {
-                padding: 20px;
-            }
-            .item-header {
-                flex-direction: column;
-            }
-            .item-details {
-                text-align: left;
-                margin-top: 5px;
+            header {
+                padding: 30px 20px;
             }
             header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            .meta-text {
+                text-align: left;
             }
         }
     </style>
@@ -201,190 +296,60 @@
 <div class="container">
     <header>
         <h1>Mayank Gupta</h1>
-        <div class="contact-info">
-            <span>📍 Rohini, Delhi</span>
-            <span>📞 7011584067</span>
-            <span>✉️ <a href="mailto:mg569899@gmail.com">mg569899@gmail.com</a></span>
-            <span>🔗 <a href="https://www.linkedin.com/in/mayank-gupta-193857230/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B0dhSCPjQSBC4MX1KxVYkFA%3D%3D" target="_blank">LinkedIn Profile</a></span>
+        <div class="contact-grid">
+            <div class="contact-item">📍 <span>Rohini, Delhi</span></div>
+            <div class="contact-item">📞 <span>7011584067</span></div>
+            <div class="contact-item">✉️ <a href="mailto:mg569899@gmail.com">mg569899@gmail.com</a></div>
+            <div class="contact-item">🔗 <a href="https://www.linkedin.com/in/mayank-gupta-193857230/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B0dhSCPjQSBC4MX1KxVYkFA%3D%3D" target="_blank">LinkedIn Profile</a></div>
         </div>
     </header>
 
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skills-category">
-                <strong>Languages:</strong>
-                <span>Python, C, C++, HTML, SQL</span>
-            </div>
-            <div class="skills-category">
-                <strong>Developer Tools:</strong>
-                <span>VS Code, MS Excel, Power BI, Tableau, Data Bricks</span>
-            </div>
-        </div>
-    </section>
+    <div class="main-layout">
+        <main>
+            <section id="experience">
+                <h2>Experience</h2>
 
-    <section id="experience">
-        <h2>Experience</h2>
-        
-        <div class="item">
-            <div class="item-header">
-                <div class="item-title">
-                    <h3>Data Analyst Intern</h3>
-                    <div class="subtitle">Unified Mentor</div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="job-title">Data Analyst Intern</div>
+                            <div class="company">Unified Mentor</div>
+                        </div>
+                        <div class="meta-text">
+                            <div class="date">Jul 2024 – Aug 2024</div>
+                            <div>New Delhi, Delhi</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Collected, cleaned, and analyzed large datasets using Python and Excel, improving data quality and reliability for reporting.</li>
+                        <li>Created interactive dashboards in Power BI/Tableau to visualize business insights, enabling data-driven decision-making.</li>
+                        <li>Collaborated with mentors and team members to present findings and provide recommendations to improve business outcomes.</li>
+                    </ul>
                 </div>
-                <div class="item-details">
-                    <div class="date">July 2024 – August 2024</div>
-                    <div>New Delhi, Delhi</div>
-                </div>
-            </div>
-            <ul>
-                <li>Collected, cleaned, and analyzed large datasets using Python and Excel, improving data quality and reliability for reporting.</li>
-                <li>Created interactive dashboards in Power BI/Tableau to visualize business insights, enabling data-driven decision-making.</li>
-                <li>Collaborated with mentors and team members to present findings and provide recommendations to improve business outcomes.</li>
-            </ul>
-        </div>
 
-        <div class="item">
-            <div class="item-header">
-                <div class="item-title">
-                    <h3>Data Entry Intern</h3>
-                    <div class="subtitle">Gournish Traders</div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="job-title">Data Entry Intern</div>
+                            <div class="company">Gournish Traders</div>
+                        </div>
+                        <div class="meta-text">
+                            <div class="date">Jan 2025 – Feb 2025</div>
+                            <div>New Delhi, Delhi</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Entered, updated, and maintained company data in spreadsheets and databases with high accuracy.</li>
+                        <li>Verified data accuracy and organized digital and physical records for easy retrieval.</li>
+                        <li>Gained exposure to trading and business documentation processes.</li>
+                    </ul>
                 </div>
-                <div class="item-details">
-                    <div class="date">Jan 2025 – Feb 2025</div>
-                    <div>New Delhi, Delhi</div>
-                </div>
-            </div>
-            <ul>
-                <li>Entered, updated, and maintained company data in spreadsheets and databases with high accuracy.</li>
-                <li>Verified data accuracy and organized digital and physical records for easy retrieval.</li>
-                <li>Gained exposure to trading and business documentation processes.</li>
-            </ul>
-        </div>
 
-        <div class="item">
-            <div class="item-header">
-                <div class="item-title">
-                    <h3>Member</h3>
-                    <div class="subtitle">Rotaract Club of Delhi South East</div>
-                </div>
-                <div class="item-details">
-                    <div class="date">June 2025 – July 2026</div>
-                    <div>New Delhi, Delhi</div>
-                </div>
-            </div>
-            <ul>
-                <li>Chaired sessions on cybersecurity and creative editing with Canva, delivering clear and engaging presentations.</li>
-                <li>Coordinated with speakers, managed schedules, and handled end-to-end event planning and execution.</li>
-                <li>Demonstrated strong communication, teamwork, leadership, event coordination, public speaking, and problem-solving skills through both events.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Projects & Workshops</h2>
-
-        <div class="item">
-            <div class="item-header">
-                <div class="item-title">
-                    <h3>Dashboards (Power BI & Tableau)</h3>
-                </div>
-                <div class="item-details">
-                    <div class="date">May 2024</div>
-                </div>
-            </div>
-            <ul>
-                <li>Successfully developed dashboards for sales performance analysis in a workshop for students.</li>
-                <li>Conducted Power BI training, enabling students to analyze data and create independent dashboards and projects.</li>
-                <li>Connected Tableau to various data sources, including SQL, Excel, Google Sheets, and APIs, for real-time insights.</li>
-            </ul>
-        </div>
-
-        <div class="item">
-            <div class="item-header">
-                <div class="item-title">
-                    <h3>Data Analysis Workshop (Power BI)</h3>
-                    <div class="subtitle">CIIE Core Member</div>
-                </div>
-                <div class="item-details">
-                    <div class="date">May 2024</div>
-                </div>
-            </div>
-            <ul>
-                <li>Coordinated and managed a workshop centered around data insights using Power BI.</li>
-                <li>Successfully delivered the workshop training session to college students.</li>
-                <li>Received highly positive feedback from students for presenting clear, accessible, and effective communication skills.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="education">
-        <h2>Education</h2>
-        
-        <div class="item">
-            <div class="item-header">
-                <div class="item-title">
-                    <h3>BTech in Computer Science</h3>
-                    <div class="subtitle">GGSIPU</div>
-                </div>
-                <div class="item-details">
-                    <div class="date">Sep. 2024 – June 2028</div>
-                    <div>New Delhi, Delhi</div>
-                </div>
-            </div>
-            <p style="font-size: 0.95rem; margin-top: 5px;"><strong>Relevant Coursework:</strong> Big Data</p>
-        </div>
-
-        <div class="item">
-            <div class="item-header">
-                <div class="item-title">
-                    <h3>Rukmini Devi Public School</h3>
-                    <div class="subtitle">All India Senior School Certificate Examination</div>
-                </div>
-                <div class="item-details">
-                    <div class="date">April 2009 – April 2023</div>
-                    <div>New Delhi, Delhi</div>
-                </div>
-            </div>
-            <p style="font-size: 0.95rem; margin-top: 5px;">Non-Medical Stream | Aggregate: 73%</p>
-        </div>
-    </section>
-
-    <section id="certifications">
-        <h2>Certifications & Achievements</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Credential / Event</th>
-                    <th>Issuing Organization / Institution</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>VIZ-A-THON 3.0 (1x Winner)</td>
-                    <td>SSCBS</td>
-                    <td>August 2025</td>
-                </tr>
-                <tr>
-                    <td>Decoding Data: Insights and Impact through Analytics</td>
-                    <td>IBM CSRBOX</td>
-                    <td>May 2023</td>
-                </tr>
-                <tr>
-                    <td>Certificate of Completion | Python with Data Science</td>
-                    <td>Online Credential</td>
-                    <td>February 2024</td>
-                </tr>
-                <tr>
-                    <td>Certificate of Completion in C Programming</td>
-                    <td>Online Credential</td>
-                    <td>December 2023</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-</div>
-
-</body>
-</html>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="job-title">Member</div>
+                            <div class="company">Rotaract Club of Delhi South East</div>
+                        </div>
+                        <div class="meta-text">
+                            <div class="date">Jun 2025 – Jul 2026</div>
